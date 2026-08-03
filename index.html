@@ -14,6 +14,30 @@
         <h1 id="tree-title">Stamtræ for <span id="title-name">Fælles Børn</span></h1>
     </div>
 
+    <div id="viewport">
+        <div id="tree-container" style="display: none;"></div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <button id="close-modal">&times;</button>
+            <p style="margin: 0; font-size: 11px; color: var(--text-muted); position: absolute; top: 15px; left: 30px;">Ahnentafel Nr: <span id="display-vid" style="color: var(--text-color); font-weight: bold; font-size: 14px;"></span> <span id="display-tid"></span></p>
+
+            <div id="view-mode">
+                <div class="view-header">
+                    <div id="view-avatar" class="avatar-circle"></div>
+                    <div>
+                        <h2 id="view-name" class="view-name"></h2>
+                        <div id="view-dates" class="view-dates"></div>
+                    </div>
+                </div>
+                <div id="view-data-list" class="data-list"></div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-gold" id="set-proband-btn" onclick="setSomProband()">🌟 Gør til Nr. 1 (Udgangspunkt)</button>
+                    <button type="button" class="btn-primary" onclick="skiftTilEdit()">✏️ Rediger Oplysninger</button>
+                </div>
+            </div>
+
     <div id="ui-controls" style="position: relative;">
         <div id="proband-label">Udgangspunkt: <strong>Fælles Børn (Nr. 1)</strong></div>
 
@@ -43,30 +67,6 @@
             <button id="zoom-out">🔍 -</button>
         </div>
     </div>
-
-    <div id="viewport">
-        <div id="tree-container" style="display: none;"></div>
-    </div>
-
-    <div id="modal-overlay">
-        <div id="modal-content">
-            <button id="close-modal">&times;</button>
-            <p style="margin: 0; font-size: 11px; color: var(--text-muted); position: absolute; top: 15px; left: 30px;">Ahnentafel Nr: <span id="display-vid" style="color: var(--text-color); font-weight: bold; font-size: 14px;"></span> <span id="display-tid"></span></p>
-
-            <div id="view-mode">
-                <div class="view-header">
-                    <div id="view-avatar" class="avatar-circle"></div>
-                    <div>
-                        <h2 id="view-name" class="view-name"></h2>
-                        <div id="view-dates" class="view-dates"></div>
-                    </div>
-                </div>
-                <div id="view-data-list" class="data-list"></div>
-                <div class="modal-actions">
-                    <button type="button" class="btn-gold" id="set-proband-btn" onclick="setSomProband()">🌟 Gør til Nr. 1 (Udgangspunkt)</button>
-                    <button type="button" class="btn-primary" onclick="skiftTilEdit()">✏️ Rediger Oplysninger</button>
-                </div>
-            </div>
 
             <div id="edit-mode">
                 <h2 style="margin-top: 15px; margin-bottom: 20px; color: var(--text-color);">Rediger Profil</h2>
