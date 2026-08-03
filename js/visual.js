@@ -19,7 +19,7 @@ viewport.addEventListener("mousedown", (e) => {
     isDragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY;
 });
 window.addEventListener("mousemove", (e) => {
-    if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - translateY; updateTransform();
+    if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform();
 });
 window.addEventListener("mouseup", () => isDragging = false);
 window.addEventListener("mouseleave", () => isDragging = false);
