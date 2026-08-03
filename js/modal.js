@@ -248,7 +248,10 @@ document.getElementById("search-input").addEventListener("input", (e) => {
         return;
     }
 
-    const matches = Object.values(stamtraeData).filter(p => p.navn?.text?.toLowerCase().includes(query));
+    const matches = Object.values(stamtraeData).filter(p => 
+        (p.navn?.text?.toLowerCase().includes(query)) || 
+        (p.id?.toString().includes(query)) 
+    );
 
     if (matches.length > 0) {
         matches.slice(0, 10).forEach(p => {
