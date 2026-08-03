@@ -239,37 +239,39 @@ styleSheet.insertRule(`
 
 document.getElementById("search-input").addEventListener("input", (e) => {
     clearTimeout(searchTimeout);
-    const query = e.target.value.toLowerCase();
-    const searchResultsContainer = document.getElementById("search-results");
-    searchResultsContainer.innerHTML = "";
+    searchTimeout = setTimeout(() => {
+        const query = e.target.value.toLowerCase();
+        const searchResultsContainer = document.getElementById("search-results");
+        searchResultsContainer.innerHTML = "";
 
-    if (query.length < 2) {
-        searchResultsContainer.style.display = "none";
-        return;
-    }
+        if (query.length < 2) {
+            searchResultsContainer.style.display = "none";
+            return;
+        }
 
-    const matches = Object.values(stamtraeData).filter(p => 
-        (p.navn?.text?.toLowerCase().includes(query)) || 
-        (p.id?.toString().includes(query)) 
-    );
+        const matches = Object.values(stamtraeData).filter(p => 
+            (p.navn?.text?.toLowerCase().includes(query)) || 
+            (p.id?.toString().includes(query)) 
+        );
 
-    if (matches.length > 0) {
-        matches.slice(0, 10).forEach(p => {
-            const resultItem = document.createElement("div");
-            resultItem.className = "search-result-item";
-            resultItem.innerText = p.navn.text;
-            resultItem.onclick = () => {
-                currentViewRootTrueId = p.id;
-                TegnTrae();
-                searchResultsContainer.style.display = "none";
-                document.getElementById("search-input").value = "";
-            };
-            searchResultsContainer.appendChild(resultItem);
-        });
-        searchResultsContainer.style.display = "block";
-    } else {
-        searchResultsContainer.style.display = "none";
-    }
+        if (matches.length > 0) {
+            matches.slice(0, 10).forEach(p => {
+                const resultItem = document.createElement("div");
+                resultItem.className = "search-result-item";
+                resultItem.innerText = p.navn.text;
+                resultItem.onclick = () => {
+                    currentViewRootTrueId = p.id;
+                    TegnTrae();
+                    searchResultsContainer.style.display = "none";
+                    document.getElementById("search-input").value = "";
+                };
+                searchResultsContainer.appendChild(resultItem);
+            });
+            searchResultsContainer.style.display = "block";
+        } else {
+            searchResultsContainer.style.display = "none";
+        }
+    }, 300); // 300 ms forsinkelse
 });
 
 document.addEventListener("click", (e) => {
