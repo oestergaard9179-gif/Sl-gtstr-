@@ -37,9 +37,27 @@
                     <button type="button" class="btn-primary" onclick="skiftTilEdit()">✏️ Rediger Oplysninger</button>
                 </div>
             </div>
-
-            <div id="edit-mode">
-                <h2 style="margin-top: 15px; margin-bottom: 20px; color: var(--text-color);">Rediger Profil</h2>
+                <form id="person-form">
+                    <div class="form-section"><h3>Identitet & Profilbillede</h3><div class="section-grid"><div class="input-group"><label>Fulde Navn</label><div class="input-row"><input type="text" id="val-navn" class="no-link"></div></div><div class="input-group"><label>Profilbillede</label><div class="input-row"><input type="url" id="val-billede" placeholder="URL" style="flex:1;"><input type="file" id="upload-billede" accept="image/*" title="Upload profilbillede"></div></div></div></div>
+                    <div class="form-section"><h3>Fødsel & Dåb</h3><div class="section-grid"><div class="input-group"><label>Fødselsdato</label><div class="input-row"><input type="text" id="val-foedt" class="no-link"></div></div><div class="input-group"><label>Fødested</label><div class="input-row"><input type="text" id="val-sted" class="no-link"></div></div><div class="input-group" style="grid-column: span 2;"><label>Dåb (Dato, Kirke og Kirkebogslink)</label><div class="input-row"><input type="text" id="val-doebt"><input type="url" id="link-doebt" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Konfirmation</h3><div class="section-grid full"><div class="input-group"><label>Konfirmation</label><div class="input-row"><input type="text" id="val-konf"><input type="url" id="link-konf" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Død & Begravelse</h3><div class="section-grid"><div class="input-group"><label>Dødsdato</label><div class="input-row"><input type="text" id="val-doed" class="no-link"></div></div><div class="input-group"><label>Dato Begravelse</label><div class="input-row"><input type="text" id="val-begr_dato" class="no-link"></div></div><div class="input-group" style="grid-column: span 2;"><label>Begravet (Sted og Kirkebogslink)</label><div class="input-row"><input type="text" id="val-begr_sted"><input type="url" id="link-begr_sted" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Familie (Vielser)</h3><div class="section-grid full"><div class="input-group"><label>Vielse 1</label><div class="input-row"><input type="text" id="val-gift1"><input type="url" id="link-gift1" placeholder="🔗 Link"></div></div><div class="input-group" style="margin-top:5px;"><label>Vielse 2</label><div class="input-row"><input type="text" id="val-gift2"><input type="url" id="link-gift2" placeholder="🔗 Link"></div></div><div class="input-group" style="margin-top:5px;"><label>Vielse 3</label><div class="input-row"><input type="text" id="val-gift3"><input type="url" id="link-gift3" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Militærtjeneste</h3><div class="section-grid"><div class="input-group"><label>Lægdsrulle</label><div class="input-row"><input type="text" id="val-laegd"><input type="url" id="link-laegd" placeholder="🔗 Link"></div></div><div class="input-group"><label>Soldat</label><div class="input-row"><input type="text" id="val-soldat"><input type="url" id="link-soldat" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Erhverv, Kald & Ejendom</h3><div class="section-grid"><div class="input-group"><label>Erhverv</label><div class="input-row"><input type="text" id="val-erhverv"><input type="url" id="link-erhverv" placeholder="🔗 Link"></div></div><div class="input-group"><label>Borgerskab</label><div class="input-row"><input type="text" id="val-borger"><input type="url" id="link-borger" placeholder="🔗 Link"></div></div><div class="input-group"><label>Udnævn / Kald</label><div class="input-row"><input type="text" id="val-kald"><input type="url" id="link-kald" placeholder="🔗 Link"></div></div><div class="input-group"><label>Skøde / Fæste</label><div class="input-row"><input type="text" id="val-skoede"><input type="url" id="link-skoede" placeholder="🔗 Link"></div></div><div class="input-group"><label>Brandsforsikring</label><div class="input-row"><input type="text" id="val-brand"><input type="url" id="link-brand" placeholder="🔗 Link"></div></div><div class="input-group"><label>Aftægt</label><div class="input-row"><input type="text" id="val-aftaegt"><input type="url" id="link-aftaegt" placeholder="🔗 Link"></div></div></div></div>
+                    <div class="form-section"><h3>Folketællinger</h3><div class="section-grid" id="census-grid"></div></div>
+                    <div class="form-section"><h3>Bemærkninger</h3>
+                        <div id="bemaerk-list"></div>
+                        <button type="button" class="btn-secondary" style="margin-top: 10px; width: 100%;" onclick="addBemærkningInput()">➕ Tilføj bemærkning</button>
+                    </div>
+                </form>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="skiftTilView()">Annuller</button>
+                    <button type="button" id="save-btn" class="btn-primary">💾 Gem ændringer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="ui-controls" style="position: relative;">
         <div id="proband-label">Udgangspunkt: <strong>Fælles Børn (Nr. 1)</strong></div>
@@ -70,28 +88,6 @@
             <button id="zoom-out">🔍 -</button>
         </div>
     </div>
-                <form id="person-form">
-                    <div class="form-section"><h3>Identitet & Profilbillede</h3><div class="section-grid"><div class="input-group"><label>Fulde Navn</label><div class="input-row"><input type="text" id="val-navn" class="no-link"></div></div><div class="input-group"><label>Profilbillede</label><div class="input-row"><input type="url" id="val-billede" placeholder="URL" style="flex:1;"><input type="file" id="upload-billede" accept="image/*" title="Upload profilbillede"></div></div></div></div>
-                    <div class="form-section"><h3>Fødsel & Dåb</h3><div class="section-grid"><div class="input-group"><label>Fødselsdato</label><div class="input-row"><input type="text" id="val-foedt" class="no-link"></div></div><div class="input-group"><label>Fødested</label><div class="input-row"><input type="text" id="val-sted" class="no-link"></div></div><div class="input-group" style="grid-column: span 2;"><label>Dåb (Dato, Kirke og Kirkebogslink)</label><div class="input-row"><input type="text" id="val-doebt"><input type="url" id="link-doebt" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Konfirmation</h3><div class="section-grid full"><div class="input-group"><label>Konfirmation</label><div class="input-row"><input type="text" id="val-konf"><input type="url" id="link-konf" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Død & Begravelse</h3><div class="section-grid"><div class="input-group"><label>Dødsdato</label><div class="input-row"><input type="text" id="val-doed" class="no-link"></div></div><div class="input-group"><label>Dato Begravelse</label><div class="input-row"><input type="text" id="val-begr_dato" class="no-link"></div></div><div class="input-group" style="grid-column: span 2;"><label>Begravet (Sted og Kirkebogslink)</label><div class="input-row"><input type="text" id="val-begr_sted"><input type="url" id="link-begr_sted" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Familie (Vielser)</h3><div class="section-grid full"><div class="input-group"><label>Vielse 1</label><div class="input-row"><input type="text" id="val-gift1"><input type="url" id="link-gift1" placeholder="🔗 Link"></div></div><div class="input-group" style="margin-top:5px;"><label>Vielse 2</label><div class="input-row"><input type="text" id="val-gift2"><input type="url" id="link-gift2" placeholder="🔗 Link"></div></div><div class="input-group" style="margin-top:5px;"><label>Vielse 3</label><div class="input-row"><input type="text" id="val-gift3"><input type="url" id="link-gift3" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Militærtjeneste</h3><div class="section-grid"><div class="input-group"><label>Lægdsrulle</label><div class="input-row"><input type="text" id="val-laegd"><input type="url" id="link-laegd" placeholder="🔗 Link"></div></div><div class="input-group"><label>Soldat</label><div class="input-row"><input type="text" id="val-soldat"><input type="url" id="link-soldat" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Erhverv, Kald & Ejendom</h3><div class="section-grid"><div class="input-group"><label>Erhverv</label><div class="input-row"><input type="text" id="val-erhverv"><input type="url" id="link-erhverv" placeholder="🔗 Link"></div></div><div class="input-group"><label>Borgerskab</label><div class="input-row"><input type="text" id="val-borger"><input type="url" id="link-borger" placeholder="🔗 Link"></div></div><div class="input-group"><label>Udnævn / Kald</label><div class="input-row"><input type="text" id="val-kald"><input type="url" id="link-kald" placeholder="🔗 Link"></div></div><div class="input-group"><label>Skøde / Fæste</label><div class="input-row"><input type="text" id="val-skoede"><input type="url" id="link-skoede" placeholder="🔗 Link"></div></div><div class="input-group"><label>Brandsforsikring</label><div class="input-row"><input type="text" id="val-brand"><input type="url" id="link-brand" placeholder="🔗 Link"></div></div><div class="input-group"><label>Aftægt</label><div class="input-row"><input type="text" id="val-aftaegt"><input type="url" id="link-aftaegt" placeholder="🔗 Link"></div></div></div></div>
-                    <div class="form-section"><h3>Folketællinger</h3><div class="section-grid" id="census-grid"></div></div>
-                    <div class="form-section"><h3>Bemærkninger</h3>
-                        <div id="bemaerk-list"></div>
-                        <button type="button" class="btn-secondary" style="margin-top: 10px; width: 100%;" onclick="addBemærkningInput()">➕ Tilføj bemærkning</button>
-                    </div>
-                </form>
-                <div class="modal-actions">
-                    <button type="button" class="btn-secondary" onclick="skiftTilView()">Annuller</button>
-                    <button type="button" id="save-btn" class="btn-primary">💾 Gem ændringer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="js/utilities.js"></script>
     <script src="js/visual.js"></script>
     <script src="js/modal.js"></script>
